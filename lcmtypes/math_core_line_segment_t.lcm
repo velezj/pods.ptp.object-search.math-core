@@ -1,0 +1,9 @@
+
+package math_core;
+
+struct line_segment_t {
+
+       nd_point_t start;
+       nd_point_t end;
+
+}

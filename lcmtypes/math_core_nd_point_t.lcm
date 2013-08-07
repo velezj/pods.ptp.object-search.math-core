@@ -1,0 +1,8 @@
+
+package math_core;
+
+struct nd_point_t {
+
+       int32_t n;
+       double coordinate[ n ];
+}

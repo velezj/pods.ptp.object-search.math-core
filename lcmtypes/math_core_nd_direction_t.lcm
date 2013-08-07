@@ -1,0 +1,8 @@
+
+package math_core;
+
+struct nd_direction_t {
+
+       int32_t n;
+       double value[ n ];
+}
