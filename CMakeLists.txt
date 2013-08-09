@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.6.0)
 
 # pull in the pods macros. See cmake/pods.cmake for documentation
-set(POD_NAME math-core)
+set(POD_NAME p2l-math-core)
 include(cmake/pods.cmake)
 
 # automatically build LCM types.  This also defines a number of CMake
@@ -18,7 +18,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3")
 
 
 # math-core library
-add_library( math-core SHARED
+add_library( p2l-math-core SHARED
   src/io.cpp
   src/geom.cpp
   src/matrix.cpp
@@ -34,12 +34,12 @@ pods_install_headers(
   src/math_function.hpp
   DESTINATION
   math-core )
-pods_use_pkg_config_packages(math-core gsl lcmtypes_math-core eigen3 boost-1.51.0 )
-pods_install_libraries( math-core )
-pods_install_pkg_config_file(math-core
+pods_use_pkg_config_packages(p2l-math-core gsl-1.16 lcmtypes_p2l-math-core eigen3 boost-1.54.0 )
+pods_install_libraries( p2l-math-core )
+pods_install_pkg_config_file(p2l-math-core
     CFLAGS
-    LIBS -lmath-core
-    REQUIRES gsl eigen3 boost-1.51.0
+    LIBS -lp2l-math-core
+    REQUIRES gsl-1.16 eigen3 boost-1.54.0
     VERSION 0.0.1)
 
 

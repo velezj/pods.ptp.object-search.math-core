@@ -3,7 +3,7 @@
 #define __GEOM_HPP__
 
 
-#include "lcmtypes/math_core.hpp"
+#include "lcmtypes/p2l_math_core.hpp"
 
 
 

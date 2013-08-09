@@ -2,7 +2,7 @@
 #if !defined( __IO_HPP__ )
 #define __IO_HPP__
 
-#include "lcmtypes/math_core.hpp"
+#include "lcmtypes/p2l_math_core.hpp"
 #include <iosfwd>
 
 namespace math_core {
