@@ -514,7 +514,7 @@ namespace math_core {
 		 const size_t dimension )
   {
     assert( dimension < box.n );
-    if( dimension >= box.n )
+    if( (long)dimension >= box.n )
       return std::numeric_limits<double>::signaling_NaN();
     
     return box.end.coordinate[ dimension ] - box.start.coordinate[ dimension ];

@@ -49,7 +49,7 @@ namespace math_core {
   Eigen::VectorXd to_eigen_mat( const std::vector<double>& vec ) 
   {
     Eigen::VectorXd v( vec.size() );
-    for( int64_t i = 0; i < vec.size(); ++i ) {
+    for( int64_t i = 0; i < (int64_t)vec.size(); ++i ) {
       v( i ) = vec[i];
     }
     return v;
@@ -61,7 +61,7 @@ namespace math_core {
   nd_vector_t to_vector( const Eigen::VectorXd& vec )
   {
     nd_vector_t v = zero_vector( vec.rows() );
-    for( size_t i = 0; i < vec.rows(); ++i ) {
+    for( size_t i = 0; (long)i < vec.rows(); ++i ) {
       v.component[i] = vec(i);
     }
     return v;
@@ -77,13 +77,13 @@ namespace math_core {
 
     if( vec.rows() == 1 ) {
       nd_vector_t v = zero_vector( vec.rows() );
-      for( size_t i = 0; i < vec.rows(); ++i ) {
+      for( size_t i = 0; (long)i < vec.rows(); ++i ) {
 	v.component[i] = vec(i,0);
       }
       return v;
     } else {
       nd_vector_t v = zero_vector( vec.cols() );
-      for( size_t i = 0; i < vec.cols(); ++i ) {
+      for( size_t i = 0; (long)i < vec.cols(); ++i ) {
 	v.component[i] = vec(0,i);
       }
       return v;
