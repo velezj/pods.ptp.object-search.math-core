@@ -4,6 +4,7 @@
 
 
 #include "lcmtypes/p2l_math_core.hpp"
+#include <vector>
 
 
 
@@ -134,6 +135,11 @@ namespace math_core {
 		  const nd_aabox_t& box );
 
   // Description:
+  // Test if a box is fully inside another box
+  bool is_fully_inside( const nd_aabox_t& inner,
+			const nd_aabox_t& outer );
+
+  // Description:
   // returns the "length" of a dimension for a box
   double length( const nd_aabox_t& box,
 		 const size_t dimension );
@@ -169,6 +175,13 @@ namespace math_core {
   // Compare points by y coordiante (second coordiante )
   bool point_compare_y( const nd_point_t& a,
 			const nd_point_t& b );
+
+
+  // Description:
+  // Returns the points which are inside of the window
+  std::vector<nd_point_t> 
+  points_inside_window( const nd_aabox_t& window,
+			const std::vector<nd_point_t>& points );
   
 }
 

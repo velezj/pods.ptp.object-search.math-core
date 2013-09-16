@@ -509,6 +509,16 @@ namespace math_core {
   }
 
   //========================================================================
+  
+  bool is_fully_inside( const nd_aabox_t& inner,
+			const nd_aabox_t& outer )
+  {
+    return 
+      is_inside( inner.start, outer ) &&
+      is_inside( inner.end, outer );
+  }
+
+  //========================================================================
 
   double length( const nd_aabox_t& box,
 		 const size_t dimension )
@@ -591,6 +601,22 @@ namespace math_core {
   }
 
   //========================================================================
+
+  std::vector<nd_point_t>
+  points_inside_window( const nd_aabox_t& window,
+			const std::vector<nd_point_t>& points )
+  {
+    std::vector<nd_point_t> res;
+    for( std::vector<nd_point_t>::const_iterator iter = points.begin();
+	 iter != points.end();
+	 ++iter ) {
+      if( is_inside( *iter, window ) ) {
+	res.push_back( *iter );
+      }
+    }
+    return res;
+  }
+
   //========================================================================
   //========================================================================
   //========================================================================
