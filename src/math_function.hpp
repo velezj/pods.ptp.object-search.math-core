@@ -16,6 +16,8 @@ namespace math_core
   {
   public:
 
+    virtual ~math_function_t() {}
+
     // Description:
     // The function operator
     virtual
@@ -36,6 +38,7 @@ namespace math_core
     solid_function( const boost::shared_ptr<math_function_t<T_Input, T_Output> >& f )
       : _func(f)
     {}
+    virtual ~solid_function() {}
     virtual
     T_Output operator()( const T_Input& x ) const
     {
@@ -61,6 +64,8 @@ namespace math_core
 		  const boost::shared_ptr<math_function_t<T_Input, T_Output > >& b )
 	: _a(a), _b(b)
       {}
+
+      virtual ~multiply_t() {}
       
       virtual 
       T_Output operator() ( const T_Input& x ) const

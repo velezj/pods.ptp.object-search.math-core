@@ -622,7 +622,7 @@ namespace math_core {
   bool undefined( const nd_point_t& p )
   {
     return p.n == 0 ||
-      p.component.size() == 0;
+      p.coordinate.size() == 0;
   }
 
   //========================================================================
