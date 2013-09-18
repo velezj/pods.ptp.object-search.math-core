@@ -182,6 +182,16 @@ namespace math_core {
   std::vector<nd_point_t> 
   points_inside_window( const nd_aabox_t& window,
 			const std::vector<nd_point_t>& points );
+
+
+  // Description:
+  // returns true iif the given point is undefined
+  bool undefined( const nd_point_t& p );
+  
+  
+  // Description:
+  // returns true iif the given box is undefined
+  bool undefined( const nd_aabox_t& b );
   
 }
 
