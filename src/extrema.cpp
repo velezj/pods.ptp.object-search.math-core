@@ -45,16 +45,16 @@ namespace math_core {
     // setup the gsl function as teh negative shimmy (since we want a max)
     F.function = &impl::negative_shimmy_f;
     F.params = const_cast<void*>( (void*)&f );
-    
-    // use the brent minimizer , allocate it
-    T = gsl_min_fminimizer_brent;
-    s = gsl_min_fminimizer_alloc( T );
-    gsl_min_fminimizer_set( s, &F, guess, low, high );
 
     // temporaryly set the gsl error function to nothing
     // we will handle error explicitly here
     gsl_error_handler_t* old_error_handler 
       = gsl_set_error_handler_off();
+
+    // use the brent minimizer , allocate it
+    T = gsl_min_fminimizer_brent;
+    s = gsl_min_fminimizer_alloc( T );
+    gsl_min_fminimizer_set( s, &F, guess, low, high );
 
     // iterate the minimizer until we have succedded OR
     // we have reached max iterations
@@ -93,11 +93,13 @@ namespace math_core {
     } while( iteration < max_iterations && 
 	     status == GSL_CONTINUE );
     
+    
+    // free minimizer
+    gsl_min_fminimizer_free(s);
+
     // restore the gsl error handler
     gsl_set_error_handler( old_error_handler );
 
-    // free minimizer
-    gsl_min_fminimizer_free(s);
 
     // return the found maxima
     return min;
