@@ -560,6 +560,12 @@ namespace math_core {
   bool point_lexicographical_compare( const nd_point_t& a,
 				      const nd_point_t& b )
   {
+    if ( a.n < b.n ) {
+      return true;
+    }
+    if( b.n < a.n ) {
+      return false;
+    }
     assert( a.n == b.n );
     for( int i = 0 ; i < a.n; ++i ) {
       if( a.coordinate[i] < b.coordinate[i] )

@@ -54,6 +54,11 @@ namespace math_core {
     return ( a > 0.0) ? floor( a + 0.5 ) : ceil( a - 0.5 );
   }
 
+
+  // Description:
+  // sort a given vectory using a proxy vector for the comparions
+  
+
 }
 
 #endif
