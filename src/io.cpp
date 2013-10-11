@@ -1,6 +1,7 @@
 
 #include "io.hpp"
 #include <iostream>
+#include <sstream>
 
 
 namespace math_core {
@@ -74,10 +75,87 @@ namespace math_core {
   }
 
   //========================================================================
+
+  std::string to_json( const nd_point_t& p )
+  {
+    std::ostringstream oss;
+    oss << "[ ";
+    for( size_t i = 0; i < p.n; ++i ) {
+      oss << p.coordinate[i];
+      if( i < p.n - 1 ) {
+	oss << ",";
+      }
+    }
+    oss << "]";
+    return oss.str();
+  }
+
   //========================================================================
+  
+  std::string to_json( const nd_vector_t& v )
+  {
+    std::ostringstream oss;
+    oss << "[ ";
+    for( size_t i = 0; i < v.n; ++i ) {
+      oss << v.component[i];
+      if( i < v.n - 1 ) {
+	oss << ",";
+      }
+    }
+    oss << "]";
+    return oss.str();
+  }
+
   //========================================================================
+
+  std::string to_json( const nd_direction_t& d )
+  {
+    std::ostringstream oss;
+    oss << "[ ";
+    for( size_t i = 0; i < d.n; ++i ) {
+      oss << d.value[i];
+      if( i < d.n - 1 ) {
+	oss << ",";
+      }
+    }
+    oss << "]";
+    return oss.str();
+  }
+
+
   //========================================================================
+  
+  std::string to_json( const nd_aabox_t& b )
+  {
+    std::ostringstream oss;
+    oss << "{ \"object_class\" : \"nd_aabox_t\" , ";
+    oss << "  \"start\" : " << to_json( b.start ) << " , ";
+    oss << "  \"end\" : " << to_json( b.end );
+    oss << " }";
+    return oss.str();
+  }
+
+  
   //========================================================================
+
+  std::string to_json( const dense_matrix_t& mat )
+  {
+    std::ostringstream oss;
+    oss << "{ \"object_class\" : \"dense_matrix_t\" , ";
+    oss << "  \"rows\" : " << mat.rows << " , ";
+    oss << "  \"cols\" : " << mat.cols << " , ";
+    oss << "  \"num_elements\" : " << mat.num_elements << " , ";
+    oss << "  \"data\" : [ ";
+    for( size_t i = 0; i < mat.data.size(); ++i ) {
+      oss << mat.data[i];
+      if( i < mat.data.size() - 1 ) {
+	oss << ",";
+      }
+    }
+    oss << "] }";
+    return oss.str();
+  }
+
   //========================================================================
   //========================================================================
   //========================================================================

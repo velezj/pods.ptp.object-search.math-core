@@ -6,6 +6,7 @@
 #include <eigen3/Eigen/Eigen>
 #include <limits.h>
 #include <stdexcept>
+#include <algorithm>
 
 namespace math_core {
 
@@ -560,18 +561,26 @@ namespace math_core {
   bool point_lexicographical_compare( const nd_point_t& a,
 				      const nd_point_t& b )
   {
-    if ( a.n < b.n ) {
-      return true;
-    }
-    if( b.n < a.n ) {
-      return false;
-    }
-    assert( a.n == b.n );
-    for( int i = 0 ; i < a.n; ++i ) {
-      if( a.coordinate[i] < b.coordinate[i] )
-	return true;
-    }
-    return false;
+
+    assert( a.n == a.coordinate.size() );
+    assert( b.n == b.coordinate.size() );
+    return std::lexicographical_compare( a.coordinate.begin(),
+					 a.coordinate.end(),
+					 b.coordinate.begin(),
+					 b.coordinate.end() );
+
+    // if ( a.n < b.n ) {
+    //   return true;
+    // }
+    // if( b.n < a.n ) {
+    //   return false;
+    // }
+    // assert( a.n == b.n );
+    // for( int i = 0 ; i < a.n; ++i ) {
+    //   if( a.coordinate[i] < b.coordinate[i] )
+    // 	return true;
+    // }
+    // return false;
   }
 
   //========================================================================

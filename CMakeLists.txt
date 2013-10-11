@@ -30,6 +30,7 @@ add_library( p2l-math-core SHARED
   src/matrix.cpp
   src/utils.cpp
   src/extrema.cpp
+  src/gsl_utils.cpp
   )
 pods_install_headers( 
   src/geom.hpp
@@ -38,6 +39,7 @@ pods_install_headers(
   src/utils.hpp
   src/extrema.hpp
   src/math_function.hpp
+  src/gsl_utils.hpp
   DESTINATION
   math-core )
 pods_use_pkg_config_packages(p2l-math-core gsl-1.16 lcmtypes_p2l-math-core eigen3 boost-1.54.0 )
