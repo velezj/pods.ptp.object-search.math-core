@@ -3,8 +3,16 @@
 #define __GEOM_HPP__
 
 
+
 #include "lcmtypes/p2l_math_core.hpp"
 #include <vector>
+
+// Add nd_point_t to stat counter
+// #if defined( __P2L_COMMON_stat_counter_possible_types__ )
+// #define __P2L_COMMON_stat_counter_possible_types__ boost::mpl::push_front< boost::mpl::push_front< __P2L_COMMON_stat_counter_possible_types__, math_core::nd_point_t >::type, math_core::nd_vector_t >::type
+// #else
+// #define __P2L_COMMON_stat_counter_possible_types__ boost::mpl::vector< double, std::string, math_core::nd_point_t, math_core::nd_vector_t >
+// #endif
 
 
 

@@ -13,7 +13,7 @@ lcmtypes_build()
 #set(CMAKE_CXX_FLAGS "-std=c++0x -pedantic -Wall -O2 -g")
 #set(CMAKE_CXX_FLAGS "-std=c++0x -pedantic -Wall -O0 -g3")
 
-add_definitions( -Wall -fdiagnostics-show-option )
+add_definitions( -std=c++0x -Wall -fdiagnostics-show-option )
 set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3")
 
 option ( USE_PEDANTIC "Turn on -pendantic mode in gcc. This will spit out *lots* of warnings from lcm :-(, but hopefully none from the rest of the code" OFF)
@@ -40,14 +40,15 @@ pods_install_headers(
   src/extrema.hpp
   src/math_function.hpp
   src/gsl_utils.hpp
+  src/mpt.hpp
   DESTINATION
   math-core )
-pods_use_pkg_config_packages(p2l-math-core gsl-1.16 lcmtypes_p2l-math-core eigen3 boost-1.54.0 )
+pods_use_pkg_config_packages(p2l-math-core gsl-1.16 lcmtypes_p2l-math-core eigen3 boost-1.54.0 p2l-common )
 pods_install_libraries( p2l-math-core )
 pods_install_pkg_config_file(p2l-math-core
     CFLAGS
     LIBS -lp2l-math-core
-    REQUIRES gsl-1.16 eigen3 boost-1.54.0
+    REQUIRES gsl-1.16 eigen3 boost-1.54.0 p2l-common
     VERSION 0.0.1)
 
 
