@@ -200,6 +200,10 @@ namespace math_core {
   // Description:
   // returns true iif the given box is undefined
   bool undefined( const nd_aabox_t& b );
+
+  // Description:
+  // Finds the smallest enclosing bounding box for a set of points
+  nd_aabox_t smallest_enclosing_box( const std::vector<nd_point_t>& p );
   
 }
 

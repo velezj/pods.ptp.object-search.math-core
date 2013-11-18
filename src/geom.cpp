@@ -649,6 +649,21 @@ namespace math_core {
   }
 
   //========================================================================
+
+  nd_aabox_t smallest_enclosing_box( const std::vector<nd_point_t>& points )
+  {
+    assert( points.size() >= 2 );
+    if( points.empty() ) {
+      return nd_aabox_t();
+    }
+    if( points.size() == 1 ) {
+      return aabox( points[0], points[0] );
+    }
+    std::vector<nd_point_t> sorted = points;
+    std::sort( sorted.begin(), sorted.end(), point_lexicographical_compare );
+    return aabox( sorted[0], sorted[sorted.size()-1] );
+  }
+
   //========================================================================
   //========================================================================
   //========================================================================

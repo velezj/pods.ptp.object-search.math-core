@@ -48,6 +48,10 @@ namespace math_core {
   // Description:
   // Returns true if the given matrix is diagonal (withinb epsillon)
   bool is_diagonal( const dense_matrix_t& mat, const double epsilon = 1e-10 );
+
+  // Description:
+  // Returns a dense matrix with given diagonal (and zero everywhere else)
+  dense_matrix_t diagonal_matrix( const nd_point_t& d );
 }
 
 

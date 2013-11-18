@@ -135,6 +135,27 @@ namespace math_core {
   }
 
   //=========================================================================
+
+  dense_matrix_t diagonal_matrix( const nd_point_t& d )
+  {
+    dense_matrix_t m;
+    if( !undefined( d ) ) {
+      m.rows = m.cols = d.n;
+      m.num_elements = m.rows * m.cols;
+      m.data = std::vector<double>( m.num_elements, 0 );
+      for( int i = 0; i < m.rows; ++i ) {
+	for( int j = 0; j < m.cols; ++j ) {
+	  if( i == j ) {
+	    m.data[ m.cols * i + j ] = d.coordinate[ i ];
+	  }
+	}
+      } 
+    } else {
+      m.rows = m.cols = m.num_elements = 0;
+    }
+    return m;
+  }
+
   //=========================================================================
   //=========================================================================
   //=========================================================================
