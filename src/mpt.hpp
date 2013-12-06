@@ -3,7 +3,8 @@
 #define __P2L_MATH_CORE_mpt_HPP__
 
 
-#include <boost/multiprecision/cpp_dec_float.hpp>
+//#include <boost/multiprecision/cpp_dec_float.hpp>
+#include <boost/multiprecision/gmp.hpp>
 
 //======================================================================
 
@@ -27,7 +28,8 @@ namespace math_core {
     // A high-precision floating point number.
     // This will have the default precision 
     // (defined in P2L_MATH_CORE_MPT_PRECISION).
-    typedef boost::multiprecision::number<boost::multiprecision::cpp_dec_float<P2L_MATH_CORE_MPT_PRECISION> > mp_float;
+    //typedef boost::multiprecision::number<boost::multiprecision::cpp_dec_float<P2L_MATH_CORE_MPT_PRECISION> > mp_float;
+    typedef boost::multiprecision::number<boost::multiprecision::gmp_float<P2L_MATH_CORE_MPT_PRECISION> > mp_float;
 
     //======================================================================
     //======================================================================
