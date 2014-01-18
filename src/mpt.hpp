@@ -13,7 +13,7 @@
 // This can be define *before* including this file to change it,
 // otherwise a default value is used of 50
 #if !defined( P2L_MATH_CORE_MPT_PRECISION )
-#define P2L_MATH_CORE_MPT_PRECISION 50
+#define P2L_MATH_CORE_MPT_PRECISION 100
 #endif
 
 //======================================================================
