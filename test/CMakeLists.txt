@@ -21,3 +21,10 @@ add_executable( p2l-math-core-test-math-function
 pods_use_pkg_config_packages( p2l-math-core-test-math-function p2l-math-core lcmtypes_p2l-math-core )
 pods_install_executables( p2l-math-core-test-math-function )
 
+
+# test polynomial fit
+add_executable( p2l-math-core-test-polynomial-fit
+  test-polynomial-fit.cpp)
+pods_use_pkg_config_packages( p2l-math-core-test-polynomial-fit p2l-math-core lcmtypes_p2l-math-core )
+pods_install_executables( p2l-math-core-test-polynomial-fit )
+
