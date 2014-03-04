@@ -14,14 +14,15 @@ int main( int argc, char** argv )
   size_t degree = 4;
   dense_matrix_t cov;
   double chisq;
-  std::vector<double> coeffs;
+  polynomial_t poly;
   
   polynomial_least_squares_fit( degree,
 				x, y,
-				coeffs,
+				poly,
 				chisq,
 				cov );
 
+  std::vector<double> coeffs = poly.coefficients();
   std::cout << "Fit Poly: ";
   for( size_t i = 0; i < coeffs.size(); ++i ) {
     std::cout << "+ " << coeffs[i] << " x^" << i << " ";

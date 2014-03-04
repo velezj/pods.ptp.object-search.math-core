@@ -4,6 +4,7 @@
 #define __MATH_CORE_plynomail_fit_HPP__
 
 #include "matrix.hpp"
+#include "polynomial.hpp"
 
 namespace math_core {
 
@@ -18,7 +19,7 @@ namespace math_core {
   void polynomial_least_squares_fit( const size_t degree,
 				     const std::vector<double>& x,
 				     const std::vector<double>& y,
-				     std::vector<double>& coeffs,
+				     polynomial_t& poly,
 				     double& chi_sq,
 				     dense_matrix_t& cov );
 

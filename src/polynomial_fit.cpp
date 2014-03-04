@@ -11,7 +11,7 @@ namespace math_core {
   void polynomial_least_squares_fit( const size_t degree,
 				     const std::vector<double>& x,
 				     const std::vector<double>& y,
-				     std::vector<double>& coeffs,
+				     polynomial_t& poly,
 				     double& chi_sq,
 				     dense_matrix_t& cov )
   {
@@ -20,10 +20,8 @@ namespace math_core {
     gsl_vector *gsl_y, *gsl_c;
     size_t num_obs = x.size();
 
-    // clear anything given in the coefficients. 
-    // This will be filled later on, but if na error happens it
-    // will have zero elements
-    coeffs.clear();
+    std::vector<double> coeffs;
+    poly = polynomial_t(coeffs);
     
     // allocate our least square matrix X
     // and other gsl vec/mat
@@ -50,6 +48,7 @@ namespace math_core {
     for( size_t i = 0; i < degree; ++i ) {
       coeffs.push_back( gsl_vector_get( gsl_c, i ) );
     }
+    poly = polynomial_t(coeffs);
     chi_sq = gsl_chisq;
     Eigen::MatrixXd e_cov( degree, degree );
     for( size_t i = 0; i < degree; ++i ) {
