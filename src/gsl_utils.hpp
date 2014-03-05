@@ -4,6 +4,8 @@
 
 #include <gsl/gsl_errno.h>
 #include <iostream>
+#include <vector>
+#include <gsl/gsl_vector.h>
 
 
 namespace math_core {
@@ -48,7 +50,16 @@ namespace math_core {
 					 const char* file,
 					 int line,
 					 int gsl_errno );
+
+
+  // Description:
+  // Returns a *new* allocated gsl vector from vector
+  // This *must* be free'd when done!
+  gsl_vector* new_gsl_vector( const std::vector<double>& v );
   
+  // Description:
+  // Creates and returns avector from a gsl_vector*
+  std::vector<double> to_vector(const gsl_vector* v );
   
 }
 

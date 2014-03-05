@@ -36,6 +36,27 @@ namespace math_core {
   }
   
   //=========================================================================
+
+  gsl_vector* new_gsl_vector( const std::vector<double>& v )
+  {
+    gsl_vector* res = gsl_vector_alloc( v.size() );
+    for( size_t i = 0; i < v.size(); ++i ) {
+      gsl_vector_set( res, i, v[i] );
+    }
+    return res;
+  }
+
+  //=========================================================================
+  
+  std::vector<double> to_vector(const gsl_vector* v )
+  {
+    std::vector<double> res;
+    for( size_t i = 0; i < v->size; ++i ) {
+      res.push_back( gsl_vector_get( v, i ) );
+    }
+    return res;
+  }
+
   //=========================================================================
   //=========================================================================
   //=========================================================================
