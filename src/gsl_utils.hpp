@@ -51,6 +51,12 @@ namespace math_core {
 					 int line,
 					 int gsl_errno );
 
+  // ignore "math" errors
+  void gsl_ignore_math_caveat_errors( const char* reason,
+				      const char* file,
+				      int line,
+				      int gsl_errno );
+    
 
   // Description:
   // Returns a *new* allocated gsl vector from vector
