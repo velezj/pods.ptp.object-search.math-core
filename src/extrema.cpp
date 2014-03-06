@@ -141,6 +141,10 @@ namespace math_core {
     nlopt::opt engine( nlopt::GN_MLSL_LDS, initial_x.size() );
     nlopt::opt local_opt( nlopt::LN_BOBYQA, initial_x.size() );
     engine.set_local_optimizer( local_opt );
+
+    //nlopt::opt engine( nlopt::GN_ISRES, initial_x.size() );
+
+    //nlopt::opt engine( nlopt::GN_DIRECT_L, initial_x.size() );
    
     // setup the bound contraints
     engine.set_lower_bounds( lower_bounds );
@@ -174,7 +178,8 @@ namespace math_core {
 
     // ok, now we want to run a local optimizer with this as a starting
     // point to get a finer solution (unless we satisfied)
-    if( res != nlopt::STOPVAL_REACHED ) {
+    bool tune = true;
+    if( tune && res != nlopt::STOPVAL_REACHED ) {
 
       try {
 	//std::cout << "  local tune..." << std::endl;
