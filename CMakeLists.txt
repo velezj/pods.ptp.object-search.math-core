@@ -50,12 +50,12 @@ pods_install_headers(
   math-core )
 
 
-pods_use_pkg_config_packages(p2l-math-core lcmtypes_p2l-math-core gmp-5.1.3 gsl-1.16 eigen3 boost-1.54.0 p2l-common   )
+pods_use_pkg_config_packages(p2l-math-core lcmtypes_p2l-math-core gmp-5.1.3 gsl-1.16 eigen3 boost-1.54.0 p2l-common nlopt-2.4.1  )
 pods_install_libraries( p2l-math-core )
 pods_install_pkg_config_file(p2l-math-core
     CFLAGS
     LIBS -lp2l-math-core
-    REQUIRES gsl-1.16 eigen3 boost-1.54.0 p2l-common gmp-5.1.3
+    REQUIRES gsl-1.16 eigen3 boost-1.54.0 p2l-common gmp-5.1.3 nlopt-2.4.1
     VERSION 0.0.1)
 
 

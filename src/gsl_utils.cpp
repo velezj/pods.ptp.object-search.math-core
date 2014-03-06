@@ -44,6 +44,14 @@ namespace math_core {
 		  << "  [No: " << gsl_errno << "]" << std::endl;
       }
       return;
+    } else if( gsl_errno == GSL_EBADFUNC ) {
+      if( verbose ) {
+	std::cerr << "ignoring gsl error: " << reason 
+		  << "  AT: {" << file 
+		  << ", line: " << line << " }"
+		  << "  [No: " << gsl_errno << "]" << std::endl;
+      }
+      return;
     } else if( gsl_errno == GSL_ERUNAWAY ) {
       if( verbose ) {
 	std::cerr << "ignoring gsl error: " << reason 
