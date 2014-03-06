@@ -184,7 +184,8 @@ namespace math_core {
       try {
 	//std::cout << "  local tune..." << std::endl;
 	
-	nlopt::opt tune( nlopt::LN_BOBYQA, initial_x.size() );
+	nlopt::opt tune( nlopt::LN_COBYLA, initial_x.size() );
+	//nlopt::opt tune( nlopt::LN_BOBYQA, initial_x.size() );
 	tune.set_lower_bounds( lower_bounds );
 	tune.set_upper_bounds( upper_bounds );
 	if( max_min == extrema_maximize ) {
