@@ -34,6 +34,7 @@ add_library( p2l-math-core SHARED
   src/gsl_utils.cpp
   src/polynomial.cpp
   src/polynomial_fit.cpp
+  src/roots.cpp
   )
 pods_install_headers( 
   src/geom.hpp
@@ -46,6 +47,7 @@ pods_install_headers(
   src/mpt.hpp
   src/polynomial.hpp
   src/polynomial_fit.hpp
+  src/roots.hpp
   DESTINATION
   math-core )
 
