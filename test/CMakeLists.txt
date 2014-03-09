@@ -43,5 +43,12 @@ add_executable( p2l-math-core-test-roots
 pods_use_pkg_config_packages( p2l-math-core-test-roots p2l-math-core lcmtypes_p2l-math-core )
 pods_install_executables( p2l-math-core-test-roots )
 
+# test policy number
+add_executable( p2l-math-core-test-policy-number
+  test-policy-number.cpp)
+pods_use_pkg_config_packages( p2l-math-core-test-policy-number p2l-math-core lcmtypes_p2l-math-core )
+pods_install_executables( p2l-math-core-test-policy-number )
+
+
 
 

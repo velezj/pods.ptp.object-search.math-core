@@ -48,6 +48,7 @@ pods_install_headers(
   src/polynomial.hpp
   src/polynomial_fit.hpp
   src/roots.hpp
+  src/policy_number.hpp
   DESTINATION
   math-core )
 
