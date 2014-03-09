@@ -11,22 +11,22 @@ namespace math_core {
 
 #define POLICY_NUMBER_BINARY_OP_APPLY_POLICY( op, ret )	\
   ret operator op ( const T& a ) {			\
-    this._value op a;					\
+    _value op a;					\
     apply_policy();					\
     return *this;					\
   }							\
   ret operator op (const self_t& a ) {			\
-    this._value op a._value;				\
+    _value op a._value;					\
     apply_policy();					\
     return *this;					\
   }
 
 #define POLICY_NUMBER_BINARY_BOOL_OP( op )	\
   bool operator op (const T& a ) {		\
-    return this._value op a;			\
+    return _value op a;				\
   }						\
   bool operator op (const self_t& a) {		\
-    return this._value op a._value;		\
+    return _value op a._value;			\
   }
   
   //==================================================================
@@ -36,16 +36,19 @@ namespace math_core {
   // or too large (as eponent factors of 1.0).
   // This is particularly useful for things like probabilities
   // which should enver actually be zero or infinity
-  template< class T, int LOW_EXPONENT, int HIGH_EXPONENT >
+  //
+  // In essence, we bound the value by:
+  //    low_sign * 10^low_exp <= value <= high_sign * 10^high_exp
+  template< class T, int LOW_EXPONENT, int LOW_SIGN, int HIGH_EXPONENT, int HIGH_SIGN >
   class bounded_below_above_number_t
-    : public boost::ordered_euclidean_ring_operators<bounded_below_above_number_t<T,LOW_EXPONENT,HIGH_EXPONENT> >,
-      public boost::ordered_euclidean_ring_operators<bounded_below_above_number_t<T,LOW_EXPONENT,HIGH_EXPONENT>, T>,
+    : public boost::ordered_euclidean_ring_operators<bounded_below_above_number_t<T,LOW_EXPONENT,LOW_SIGN, HIGH_EXPONENT,HIGH_SIGN> >,
+      public boost::ordered_euclidean_ring_operators<bounded_below_above_number_t<T,LOW_EXPONENT,LOW_SIGN,HIGH_EXPONENT,HIGH_SIGN>, T>
   {
   public:
 
     // Description:
     // self_t for convinience
-    typedef bounded_below_above_number_t<T,LOW_EXPONENT,HIGH_EXPONENT> self_t;
+    typedef bounded_below_above_number_t<T,LOW_EXPONENT,LOW_SIGN,HIGH_EXPONENT,HIGH_SIGN> self_t;
 
     // Description:
     // for reflection
@@ -75,7 +78,7 @@ namespace math_core {
       return U(_value);
     }
 
-    T opearator T() {
+    operator T() const {
       return _value;
     }
     
@@ -111,46 +114,48 @@ namespace math_core {
 
   // Description:
   // Initialize the statics inside class
-  template< class T, int LE, int HE > 
-  typename bounded_below_above_number_t<T,LE,HE>::value_type 
-  bounded_below_above_number_t<T,LE,HE>::LOW_BOUND 
-  = boost::math::tools::pow<LE>( 10.0 );
-  template< class T, int LE, int HE > 
-  typename bounded_below_above_number_t<T,LE,HE>::value_type 
-  bounded_below_above_number_t<T,LE,HE>::HIGH_BOUND 
-  = boost::math::tools::pow<HE>( 10.0 );  
+  template< class T, int LE, int LS, int HE, int HS > 
+  typename bounded_below_above_number_t<T,LE,LS,HE,HS>::value_type 
+  bounded_below_above_number_t<T,LE,LS,HE,HS>::LOW_BOUND 
+  = LS * boost::math::pow<LE>( 10.0 );
+  template< class T, int LE, int LS, int HE, int HS > 
+  typename bounded_below_above_number_t<T,LE,LS,HE,HS>::value_type 
+  bounded_below_above_number_t<T,LE,LS,HE,HS>::HIGH_BOUND 
+  = HS * boost::math::pow<HE>( 10.0 );  
 
   //==================================================================
   
 #define POLICY_NUMBER_PROXY_FUNCTION_1( func )				\
-  template< class T, int LE, int HE >					\
-  bounded_below_above_number_t<T,LE,HE>					\
-  func ( const bounded_below_above_number_t<T,LE,HE>& a ) {		\
-    return bounded_below_above_number_t<T,LE,HE>( func ( a._value ) );	\
+  template< class T, int LE, int LS, int HE, int HS >			\
+  bounded_below_above_number_t<T,LE,LS,HE,HS>				\
+  func ( const bounded_below_above_number_t<T,LE,LS,HE,HS>& a ) {	\
+    return								\
+      bounded_below_above_number_t<T,LE,LS,HE,HS>( func ( a._value ) );	\
   }
-
+  
 #define POLICY_NUMBER_PROXY_FUNCTION_BOOL_1( func )			\
-  template< class T, int LE, int HE >					\
-  bool
-  func ( const bounded_below_above_number_t<T,LE,HE>& a ) {		\
+  template< class T, int LE, int LS, int HE, int HS >			\
+  bool									\
+  func ( const bounded_below_above_number_t<T,LE,LS,HE,HS>& a ) {	\
     return func ( a._value );						\
   }
   
-
+  
 #define POLICY_NUMBER_PROXY_FUNCTION_2( func )				\
-  template< class T, int LE, int HE >					\
-  bounded_below_above_number_t<T,LE,HE>					\
-  func ( const bounded_below_above_number_t<T,LE,HE>& a,		\
-	 const bounded_below_above_number_t<T,LE,HE>& b) {		\
-    return bounded_below_above_number_t<T,LE,HE>( func ( a._value,	\
-							 b._value ) );	\
+  template< class T, int LE, int LS, int HE, int HS >			\
+  bounded_below_above_number_t<T,LE,LS,HE,HS>				\
+  func ( const bounded_below_above_number_t<T,LE,LS,HE,HS>& a,		\
+	 const bounded_below_above_number_t<T,LE,LS,HE,HS>& b) {	\
+    return								\
+      bounded_below_above_number_t<T,LE,LS,HE,HS>( func ( a._value,	\
+							  b._value ) );	\
   }
 
 #define POLICY_NUMBER_PROXY_FUNCTION_BOOL_2( func )			\
-  template< class T, int LE, int HE >					\
+  template< class T, int LE, int LS, int HE, int HS >			\
   bool									\
-  func ( const bounded_below_above_number_t<T,LE,HE>& a,		\
-	 const bounded_below_above_number_t<T,LE,HE>& b) {		\
+  func ( const bounded_below_above_number_t<T,LE,LS,HE,HS>& a,		\
+	 const bounded_below_above_number_t<T,LE,LS,HE,HS>& b) {	\
     return func ( a._value, b._value );					\
   }
   
