@@ -92,7 +92,7 @@ namespace math_core {
     POLICY_NUMBER_BINARY_BOOL_OP(<);
     POLICY_NUMBER_BINARY_BOOL_OP(>);
     
-  protected:
+  public:
     
     T _value;
     
