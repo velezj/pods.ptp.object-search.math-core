@@ -3,10 +3,12 @@
 #define __MATH_CORE_EXTREMA_HPP__
 
 
+#include "exception.hpp"
 #include <boost/function.hpp>
 #include <boost/optional.hpp>
 #include <functional>
 #include <vector>
+#include <string>
 
 namespace math_core {
 
@@ -69,6 +71,17 @@ namespace math_core {
    const extrema_direction_enum& max_min,
    double& extrema_value);
 
+
+  
+  typedef boost::error_info<struct tag_nlopt_errno, int >
+  errorinfo_nlopt_errorno;
+  typedef boost::error_info<struct tag_nlopt_line, int >
+  errorinfo_nlopt_line;
+  typedef boost::error_info<struct tag_nlopt_file, std::string >
+  errorinfo_nlopt_file;
+  typedef boost::error_info<struct tag_nlopt_reason, std::string >
+  errorinfo_nlopt_reason;
+  
 }
 
 #endif

@@ -76,6 +76,17 @@ namespace math_core {
 
   //========================================================================
 
+  std::ostream& operator<< (std::ostream& os, const std::vector<double>& v )
+  {
+    for( size_t i = 0; i < v.size(); ++i ) {
+      os << v[i] << ", ";
+    }
+    return os;
+  }
+  
+
+  //========================================================================
+
   std::string to_json( const nd_point_t& p )
   {
     std::ostringstream oss;

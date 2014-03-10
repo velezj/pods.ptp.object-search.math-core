@@ -23,6 +23,8 @@ namespace math_core {
 			    const line_segment_t& segment );
   std::ostream& operator<< (std::ostream& os,
 			    const nd_aabox_t& box );
+  std::ostream& operator<< (std::ostream& os,
+			    const std::vector<double>& v );
 
 
   // Description:
