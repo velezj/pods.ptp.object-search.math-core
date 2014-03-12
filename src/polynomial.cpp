@@ -51,6 +51,37 @@ namespace math_core {
   
   //====================================================================
 
+  double
+  polynomial_t::find_point_arc_length_away( const double& start_x,
+					    const double& target_arc_length,
+					    const double& tol) const
+  {
+
+    // ok, search for an end_x which is "too" far then shirnk down
+    // initially guess as if we are on a straight line
+    double end_x = start_x + target_arc_length;
+    double ac = arc_length( start_x, end_x );
+    while( ac < target_arc_length ) {
+      end_x = start_x + (end_x - start_x) * 2.0;
+      ac = arc_length( start_x, end_x );
+    }
+
+    // Ok, now shrink down to find it
+    double guess_x = start_x + (end_x - start_x) / 2.0;
+    ac = arc_length( start_x, guess_x );
+    while( fabs( ac - target_arc_length ) > tol ) {
+      if( ac < target_arc_length ) {
+	guess_x = start_x + guess_x + (end_x - guess_x) / 2.0;
+      } else {
+	end_x = guess_x;
+	guess_x = start_x + (end_x - start_x) / 2.0;
+      }
+      ac = arc_length( start_x, guess_x );
+    }
+    return guess_x;
+  }
+
+
   //====================================================================
 
 }

@@ -29,7 +29,28 @@ namespace math_core {
     // so coeffs = [ 0 1 3 5 ] = 0 + x + 3x^2 + 5x^3
     polynomial_t( const std::vector<double>& coeffs )
       : _coeffs( coeffs )
-    {}
+    {
+      // reduce degree
+      reduce_degree();
+    }
+
+    // Description:
+    // Drop any zero coefficients at higher orders
+    void reduce_degree()
+    {
+      size_t true_size = _coeffs.size();
+      for( size_t i = _coeffs.size(); i > 0; --i ) {
+	if( _coeffs[ i-1 ] == 0 ) {
+	  --true_size;
+	} else {
+	  break;
+	}
+      }
+      if( true_size != _coeffs.size() ) {
+	_coeffs = std::vector<double>( _coeffs.begin(),
+				       _coeffs.begin() + true_size );
+      }
+    }
 
 
     // Description:
@@ -80,12 +101,21 @@ namespace math_core {
     double arc_length( const double& start_x,
 		       const double& end_x ) const;
 
+    // Description:
+    // Returns an approximate point that is arc-length again
+    // from the given point in the polynomial.
+    // This essentialyl does a binayr search with the
+    // arc-length function
+    double find_point_arc_length_away( const double& start_x,
+				       const double& target_arc_length,
+				       const double& tol = 1e-6 ) const;
+
   protected:
 
   private:
 
     std::vector<double> _coeffs;
-    //boost::optional<polynomial_t> _derivative;
+
 
   };
   
