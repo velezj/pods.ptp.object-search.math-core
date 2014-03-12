@@ -13,6 +13,7 @@ namespace math_core {
   double arc_length_function( double x, void* params ) {
     polynomial_t* poly = static_cast<polynomial_t*>(params);
     polynomial_t d_poly = poly->derivative();
+    d_poly.reduce_degree();
     double d_f = d_poly.evaluate( x );
     return sqrt( 1 + d_f * d_f );
   }
@@ -28,6 +29,11 @@ namespace math_core {
     if( deg < 1 ) {
       return 0.0;
     }
+
+    // compute the "reduced" degree
+    polynomial_t temp( _coeffs );
+    temp.reduce_degree();
+    deg = temp.degree();
     
     gsl_integration_glfixed_table *tbl;
     tbl = gsl_integration_glfixed_table_alloc( (deg + 1) / 2 + 1 );

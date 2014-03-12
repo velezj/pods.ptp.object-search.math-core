@@ -29,10 +29,7 @@ namespace math_core {
     // so coeffs = [ 0 1 3 5 ] = 0 + x + 3x^2 + 5x^3
     polynomial_t( const std::vector<double>& coeffs )
       : _coeffs( coeffs )
-    {
-      // reduce degree
-      reduce_degree();
-    }
+    {}
 
     // Description:
     // Drop any zero coefficients at higher orders
