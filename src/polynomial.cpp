@@ -90,31 +90,34 @@ namespace math_core {
 
   //====================================================================
 
-}
 
-//====================================================================
-
-std::ostream& operator<< (std::ostream&  os, const math_core::polynomial_t& p )
-{
-  bool printed_something = false;
-  for( size_t i = 0; i < p.coefficients().size(); ++i ) {
-    if( p.coefficients()[i] == 0 ) {
-      if( i + 1 == p.coefficients().size() && printed_something == false ) {
-	// pass downwards since we need to print something!
-      } else {
-	continue;
+  //====================================================================
+  
+  std::ostream& operator<< (std::ostream&  os, const polynomial_t& p )
+  {
+    bool printed_something = false;
+    for( size_t i = 0; i < p.coefficients().size(); ++i ) {
+      if( p.coefficients()[i] == 0 ) {
+	if( i + 1 == p.coefficients().size() && printed_something == false ) {
+	  // pass downwards since we need to print something!
+	} else {
+	  continue;
+	}
+      }
+      if( i > 0 && printed_something ) {
+	os << " + ";
+      }
+      os << p.coefficients()[i];
+      printed_something = true;
+      if( i > 0 ) {
+	os << "x^" << i;
       }
     }
-    if( i > 0 && printed_something ) {
-      os << " + ";
-    }
-    os << p.coefficients()[i];
-    printed_something = true;
-    if( i > 0 ) {
-      os << "x^" << i;
-    }
+    return os;
   }
-  return os;
+  
+  //====================================================================
+
 }
 
-//====================================================================
+

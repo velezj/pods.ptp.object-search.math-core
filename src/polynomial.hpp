@@ -118,14 +118,15 @@ namespace math_core {
   
   //====================================================================
 
+  // Description:
+  // Stream operator for polynomials
+  std::ostream& operator<< (std::ostream&  os, const polynomial_t& p );
+
 
 }
 
 //====================================================================
 
-// Description:
-// Stream operator for polynomials
-std::ostream& operator<< (std::ostream&  os, const math_core::polynomial_t& p );
 
 //====================================================================
 
