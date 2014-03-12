@@ -25,6 +25,20 @@ int main(int argc, char** argv )
   std::cout << line1 << " : " << line1.arc_length( 0, 10 ) << std::endl;
   std::cout << quartic0 << " : " << quartic0.arc_length( 0, 10 ) << std::endl;
   std::cout << cubic0 << " : " << cubic0.arc_length( 0, 10 ) << std::endl;
+  
+  double ce;
+  double tol = 1e-6;
+  std::cout << "Arc lengths (0, 10) Chord Approx: " << std::endl;
+  std::cout << line0 << " : " << line0.arc_length_chord_approx( 0, 10, tol, ce );
+  std::cout << " {" << ce << "}" << std::endl;
+  std::cout << line1 << " : " << line1.arc_length_chord_approx( 0, 10, tol, ce );
+  std::cout << " {" << ce << "}" << std::endl;
+  std::cout << quartic0 << " : " << quartic0.arc_length_chord_approx( 0, 10, tol, ce );
+  std::cout << " {" << ce << "}" << std::endl;
+  std::cout << cubic0 << " : " << cubic0.arc_length_chord_approx( 0, 10, tol, ce );
+  std::cout << " {" << ce << "}" << std::endl;
+  
+  
 
   double ac = 3.0;
   std::cout << line0 << " : " << ac 
@@ -51,6 +65,33 @@ int main(int argc, char** argv )
 	    << "  ac=" 
 	    << cubic0.arc_length( 0, cubic0.find_point_arc_length_away( 0, ac ) )
 	    << std::endl;
+
+  std::cout << "Chord Approx: " << std::endl;
+  std::cout << line0 << " : " << ac 
+	    << " away from 0 =  " 
+	    << line0.find_point_arc_length_away_chord_approx( 0, ac ) 
+	    << "  ac=" 
+	    << line0.arc_length( 0, line0.find_point_arc_length_away_chord_approx( 0, ac ) )
+	    << std::endl;
+  std::cout << line1 << " : " << ac 
+	    << " away from 0 =  " 
+	    << line1.find_point_arc_length_away_chord_approx( 0, ac ) 
+	    << "  ac=" 
+	    << line1.arc_length( 0, line1.find_point_arc_length_away_chord_approx( 0, ac ) )
+	    << std::endl;
+  std::cout << quartic0 << " : " << ac 
+	    << " away from 0 =  " 
+	    << quartic0.find_point_arc_length_away_chord_approx( 0, ac ) 
+	    << "  ac=" 
+	    << quartic0.arc_length( 0, quartic0.find_point_arc_length_away_chord_approx( 0, ac ) )
+	    << std::endl;
+  std::cout << cubic0 << " : " << ac 
+	    << " away from 0 =  " 
+	    << cubic0.find_point_arc_length_away_chord_approx( 0, ac ) 
+	    << "  ac=" 
+	    << cubic0.arc_length( 0, cubic0.find_point_arc_length_away_chord_approx( 0, ac ) )
+	    << std::endl;
+
 
   return 0;
 }

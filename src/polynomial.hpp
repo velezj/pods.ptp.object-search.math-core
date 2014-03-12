@@ -69,11 +69,11 @@ namespace math_core {
     // Returns the dirivative of this polinomial as a polinomial
     polynomial_t derivative() const {
       if( degree() < 1 ) {
-	return polynomial_t( std::vector<double>() );
+	return polynomial_t();
       }
-      std::vector<double> d_coeffs;
+      std::vector<double> d_coeffs( degree() );
       for( size_t i = 0; i < degree(); ++i ) {
-	d_coeffs.push_back( (i + 1) * _coeffs[i+1] );
+	d_coeffs[i] = ( (i + 1) * _coeffs[i+1] );
       }
       return polynomial_t( d_coeffs );
     }
@@ -81,11 +81,11 @@ namespace math_core {
     // Description:
     // Evaluates the polinomial for some x
     double evaluate( const double& x ) const {
-      if( degree() < 1 ) {
-	return 0;
-      }
       double res = 0;
-      for( size_t i = 0; i < _coeffs.size(); ++i ) {
+      if( !_coeffs.empty() ) {
+	res = _coeffs[0];
+      }
+      for( size_t i = 1; i < _coeffs.size(); ++i ) {
 	res += ( _coeffs[i] * std::pow(x,i));
       }
       return res;
@@ -107,7 +107,35 @@ namespace math_core {
 				       const double& target_arc_length,
 				       const double& tol = 1e-6 ) const;
 
+    // Description:
+    // Returns an approximate point that is arc-length again
+    // from the given point in the polynomial.
+    // This essentialyl does a binayr search with the
+    // chord-length function!
+    double find_point_arc_length_away_chord_approx
+    ( const double& start_x,
+      const double& target_arc_length,
+      const double& tol = 1e-6,
+      const double& approx_tol = 1e-2 ) const;
+
+    // Description:
+    // Returns the chord approximation of the arc length
+    // and ensure that the midpoiint differences are less than
+    // given value.
+    // returns the actual midpoint error
+    double
+    arc_length_chord_approx
+    ( const double& start_x,
+      const double& end_x,
+      const double& tol,
+      double& midpoint_err ) const;
+
+
   protected:
+
+    // Description:
+    // Checks if this is a zero polynomial
+    bool is_zero_poly() const;
 
   private:
 
