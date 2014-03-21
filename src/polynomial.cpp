@@ -195,18 +195,45 @@ namespace math_core {
 
     // Ok, now shrink down to find it
     double guess_x = start_x + (end_x - start_x) / 2.0;
+    double old_ac = ac;
     ac = arc_length_chord_approx( start_x, guess_x, approx_tol, ce );
+    double last_move = ( end_x - start_x ) / 2.0;
+    double last_ac_per_move = ( fabs(old_ac - ac) / last_move );
     while( fabs( ac - target_arc_length) > tol
 	   && iteration < max_iter ) {
       if( ac < target_arc_length ) {
-	guess_x = start_x + guess_x + (end_x - guess_x) / 2.0;
+	double ac_f = fabs( target_arc_length - ac ) / last_ac_per_move;
+	if( guess_x + ac_f > end_x ) {
+	    last_move = (end_x - guess_x);
+	    guess_x = end_x;
+	  } else {
+	    last_move = ac_f;
+	    guess_x = guess_x + ac_f;
+	  }
       } else {
-	end_x = guess_x;
-	guess_x = start_x + (end_x - start_x) / 2.0;
+	double ac_f = fabs( target_arc_length - ac ) / last_ac_per_move;
+	if( guess_x - ac_f < start_x ) {
+	  end_x = guess_x;
+	  last_move = guess_x - start_x;
+	  guess_x = start_x;
+	} else {
+	  end_x = guess_x;
+	  guess_x = guess_x - ac_f;
+	  last_move = ac_f;
+	}
       }
+      old_ac = ac;
       ac = arc_length_chord_approx( start_x, guess_x, approx_tol, ce );
-      +iteration;
+      last_ac_per_move = fabs( old_ac - ac ) / last_move;
+      ++iteration;
     }
+
+    // print out message if iteration maximum reached
+    bool output = false;
+    if( output && iteration >= max_iter ) {
+      std::cout << "  -- max iter, ac= " << ac << " target: " << target_arc_length << " tol: " << fabs( ac - target_arc_length) << " mid-err: " << ce << std::endl;
+    }
+
     return guess_x;
   }
 

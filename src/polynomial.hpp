@@ -115,8 +115,8 @@ namespace math_core {
     double find_point_arc_length_away_chord_approx
     ( const double& start_x,
       const double& target_arc_length,
-      const double& tol = 1e-6,
-      const double& approx_tol = 1e-2 ) const;
+      const double& tol = 1e-2,
+      const double& approx_tol = 1.0 ) const;
 
     // Description:
     // Returns the chord approximation of the arc length
