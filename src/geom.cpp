@@ -659,9 +659,20 @@ namespace math_core {
     if( points.size() == 1 ) {
       return aabox( points[0], points[0] );
     }
-    std::vector<nd_point_t> sorted = points;
-    std::sort( sorted.begin(), sorted.end(), point_lexicographical_compare );
-    return aabox( sorted[0], sorted[sorted.size()-1] );
+    nd_point_t smallest = points[0];
+    nd_point_t largest = points[0];
+    size_t dim = smallest.n;
+    for( size_t i = 0; i < points.size(); ++i ) {
+      for( size_t d = 0; d < dim; ++d ) {
+	if( points[i].coordinate[d] < smallest.coordinate[d] ) {
+	  smallest.coordinate[d] = points[i].coordinate[d];
+	}
+	if( points[i].coordinate[d] > largest.coordinate[d] ) {
+	  largest.coordinate[d] = points[i].coordinate[d];
+	}
+      }
+    }
+    return aabox( smallest, largest );
   }
 
   //========================================================================
