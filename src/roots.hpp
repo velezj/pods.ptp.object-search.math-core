@@ -3,6 +3,7 @@
 #define __MATH_CORE_roots_HPP__
 
 #include <functional>
+#include <cstddef>
 
 
 namespace math_core {
