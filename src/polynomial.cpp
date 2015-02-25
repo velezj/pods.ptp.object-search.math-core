@@ -153,7 +153,7 @@ namespace math_core {
 	guess_x = start_x + (end_x - start_x) / 2.0;
       }
       ac = arc_length( start_x, guess_x );
-      +iteration;
+      ++iteration;
     }
     return guess_x;
   }

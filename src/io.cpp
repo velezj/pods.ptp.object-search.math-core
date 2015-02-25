@@ -12,7 +12,7 @@ namespace math_core {
 
   std::ostream& operator<< (std::ostream& os, const nd_point_t& p ) {
     os << "(";
-    for( int64_t i = 0; i < p.n - 1; ++i ) {
+    for( std::size_t i = 0; i < p.n - 1; ++i ) {
       os << p.coordinate[i] << ",";
     }
     if( p.n > 0 ) {
@@ -26,7 +26,7 @@ namespace math_core {
   
   std::ostream& operator<< (std::ostream& os, const nd_vector_t& v ) {
     os << "[";
-    for( int64_t i = 0; i < v.n - 1; ++i ) {
+    for( std::size_t i = 0; i < v.n - 1; ++i ) {
       os << v.component[i] << ",";
     }
     if( v.n > 0 ) {
@@ -40,7 +40,7 @@ namespace math_core {
 
   std::ostream& operator<< (std::ostream& os, const nd_direction_t& d ) {
     os << "<";
-    for( int64_t i = 0; i < d.n - 1; ++i ) {
+    for( std::size_t i = 0; i < d.n - 1; ++i ) {
       os << d.value[i] << ",";
     }
     if( d.n > 0 ) {

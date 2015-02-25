@@ -20,11 +20,11 @@ namespace math_core {
   Eigen::MatrixXd to_eigen_mat( const dense_matrix_t& mat ) 
   {
     Eigen::MatrixXd m( mat.rows, mat.cols );
-    for( int64_t row = 0; row < mat.rows; ++row ) {
-      for( int64_t col = 0; col < mat.cols; ++col ) {
+    for( std::size_t row = 0; row < mat.rows; ++row ) {
+      for( std::size_t col = 0; col < mat.cols; ++col ) {
 	
-	int64_t col_major_index = mat.rows * col + row;
-	int64_t row_major_index = mat.cols * row + col;
+	std::size_t col_major_index = mat.rows * col + row;
+	std::size_t row_major_index = mat.cols * row + col;
 
 	m( col_major_index ) = mat.data[ row_major_index ];
       }
@@ -38,7 +38,7 @@ namespace math_core {
   Eigen::VectorXd to_eigen_mat( const nd_vector_t& vec ) 
   {
     Eigen::VectorXd v( vec.n );
-    for( int64_t i = 0; i < vec.n; ++i ) {
+    for( std::size_t i = 0; i < vec.n; ++i ) {
       v( i ) = vec.component[i];
     }
     return v;
@@ -49,7 +49,7 @@ namespace math_core {
   Eigen::VectorXd to_eigen_mat( const std::vector<double>& vec ) 
   {
     Eigen::VectorXd v( vec.size() );
-    for( int64_t i = 0; i < (int64_t)vec.size(); ++i ) {
+    for( std::size_t i = 0; i < (std::size_t)vec.size(); ++i ) {
       v( i ) = vec[i];
     }
     return v;
@@ -99,11 +99,11 @@ namespace math_core {
     m.cols = mat.cols();
     m.num_elements = m.rows * m.cols;
     m.data = std::vector<double>( m.num_elements );
-    for( int64_t row = 0; row < mat.rows(); ++row ) {
-      for( int64_t col = 0; col < mat.cols(); ++col ) {
+    for( std::size_t row = 0; (long)row < mat.rows(); ++row ) {
+      for( std::size_t col = 0; (long)col < mat.cols(); ++col ) {
 	
-	int64_t col_major_index = mat.rows() * col + row;
-	int64_t row_major_index = mat.cols() * row + col;
+	std::size_t col_major_index = mat.rows() * col + row;
+	std::size_t row_major_index = mat.cols() * row + col;
 	
 	m.data[ row_major_index ] = mat( col_major_index );
       }
@@ -143,8 +143,8 @@ namespace math_core {
       m.rows = m.cols = d.n;
       m.num_elements = m.rows * m.cols;
       m.data = std::vector<double>( m.num_elements, 0 );
-      for( int i = 0; i < m.rows; ++i ) {
-	for( int j = 0; j < m.cols; ++j ) {
+      for( size_t i = 0; i < m.rows; ++i ) {
+	for( size_t j = 0; j < m.cols; ++j ) {
 	  if( i == j ) {
 	    m.data[ m.cols * i + j ] = d.coordinate[ i ];
 	  }

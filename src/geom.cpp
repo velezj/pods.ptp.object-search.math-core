@@ -17,7 +17,7 @@ namespace math_core {
   {
     assert( a.n == b.n );
     nd_vector_t v = zero_vector(a.n);
-    for( std::int64_t i = 0; i < a.n; ++i ) {
+    for( std::size_t i = 0; i < a.n; ++i ) {
       v.component[i] = a.component[i] - b.component[i];
     }
     return v;
@@ -30,7 +30,7 @@ namespace math_core {
   {
     assert( a.n == b.n );
     nd_vector_t v = zero_vector(a.n);
-    for( std::int64_t i = 0; i < a.n; ++i ) {
+    for( std::size_t i = 0; i < a.n; ++i ) {
       v.component[i] = a.component[i] + b.component[i];
     }
     return v;
@@ -41,7 +41,7 @@ namespace math_core {
   nd_vector_t operator- (const nd_vector_t&a )
   {
     nd_vector_t v = zero_vector(a.n);
-    for( std::int64_t i = 0; i < a.n; ++i ) {
+    for( std::size_t i = 0; i < a.n; ++i ) {
       v.component[i] = -a.component[i];
     }
     return v;
@@ -54,7 +54,7 @@ namespace math_core {
   {
     assert( a.n == b.n );
     nd_vector_t v = zero_vector( a.n );
-    for( std::int64_t i = 0; i < a.n; ++i ) {
+    for( std::size_t i = 0; i < a.n; ++i ) {
       v.component[i] = a.coordinate[i] - b.coordinate[i];
     }
     return v;
@@ -66,7 +66,7 @@ namespace math_core {
 			 double a )
   {
     nd_vector_t vec = zero_vector( v.n );
-    for( std::int64_t i = 0; i < v.n; ++i ) {
+    for( std::size_t i = 0; i < v.n; ++i ) {
       vec.component[i] = a * v.component[i];
     }
     return vec;
@@ -86,7 +86,7 @@ namespace math_core {
 			 double a )
   {
     nd_vector_t vec = zero_vector( dir.n );
-    for( std::int64_t i = 0; i < dir.n; ++i ) {
+    for( std::size_t i = 0; i < dir.n; ++i ) {
       vec.component[i] = a * dir.value[i];
     }
     return vec;
@@ -117,7 +117,7 @@ namespace math_core {
   {
     double sum = 0;
     assert( a.n == b.n );
-    for( std::int64_t i = 0; i < a.n; ++i ) {
+    for( std::size_t i = 0; i < a.n; ++i ) {
       sum += ( a.component[i] * b.component[i] );
     }
     return sum;
@@ -128,7 +128,7 @@ namespace math_core {
   double magnitude_sq( const nd_vector_t& a )
   {
     double sum = 0;
-    for( std::int64_t i = 0; i < a.n; ++i ) {
+    for( std::size_t i = 0; i < a.n; ++i ) {
       sum += ( a.component[i] * a.component[i] );
     }
     return sum;
@@ -150,7 +150,7 @@ namespace math_core {
   {
     assert( a.n == b.n );
     double sum = 0;
-    for( std::int64_t i = 0; i < a.n; ++i ) {
+    for( std::size_t i = 0; i < a.n; ++i ) {
       double d = a.coordinate[i] - b.coordinate[i];
       sum += ( d * d );
     }
@@ -173,7 +173,7 @@ namespace math_core {
 				double a )
   {
     nd_vector_t v = zero_vector( vec.n );
-    for( std::int64_t i = 0; i < vec.n; ++i ) {
+    for( std::size_t i = 0; i < vec.n; ++i ) {
       v.component[i] = a * vec.component[i];
     }
     return v;
@@ -193,7 +193,7 @@ namespace math_core {
 				  double a )
   {
     nd_vector_t v = zero_vector( vec.n );
-    for( std::int64_t i = 0; i < vec.n; ++i ) {
+    for( std::size_t i = 0; i < vec.n; ++i ) {
       v.component[i] = a / vec.component[i];
     }
     return v;
@@ -205,7 +205,7 @@ namespace math_core {
 				  const nd_vector_t& vec )
   {
     nd_vector_t v = zero_vector( vec.n );
-    for( std::int64_t i = 0; i < vec.n; ++i ) {
+    for( std::size_t i = 0; i < vec.n; ++i ) {
       v.component[i] = vec.component[i] / a;
     }
     return v;
@@ -220,7 +220,7 @@ namespace math_core {
   {
     double mag = magnitude( a );
     nd_direction_t dir = axis_direction( a.n, 0 );
-    for( std::int64_t i = 0; i < a.n; ++i ) {
+    for( std::size_t i = 0; i < a.n; ++i ) {
       dir.value[i] = a.component[i] / mag;
     }
     return dir;
@@ -231,7 +231,7 @@ namespace math_core {
   nd_vector_t vector( const nd_direction_t&a )
   {
     nd_vector_t vec = zero_vector( a.n );
-    for( std::int64_t i = 0; i < a.n; ++i ) {
+    for( std::size_t i = 0; i < a.n; ++i ) {
       vec.component[i] = a.value[i];
     }
     return vec;
@@ -247,7 +247,7 @@ namespace math_core {
   {
     assert( p.n == vec.n );
     nd_point_t res = zero_point( p.n );
-    for( std::int64_t i = 0; i < p.n; ++i ) {
+    for( std::size_t i = 0; i < p.n; ++i ) {
       res.coordinate[i] = p.coordinate[i] + vec.component[i];
     }
     return res;
@@ -501,7 +501,7 @@ namespace math_core {
       return false;
     
     // linearly test each coordiante
-    for( int32_t i = 0; i < p.n; ++i ) {
+    for( std::size_t i = 0; i < p.n; ++i ) {
       if( ! ( box.start.coordinate[i] <= p.coordinate[i] &&
 	      p.coordinate[i] <= box.end.coordinate[i] ) )
 	return false;
@@ -525,7 +525,7 @@ namespace math_core {
 		 const size_t dimension )
   {
     assert( dimension < box.n );
-    if( (long)dimension >= box.n )
+    if( dimension >= box.n )
       return std::numeric_limits<double>::signaling_NaN();
     
     return box.end.coordinate[ dimension ] - box.start.coordinate[ dimension ];
