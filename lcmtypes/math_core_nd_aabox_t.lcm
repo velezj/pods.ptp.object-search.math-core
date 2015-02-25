@@ -1,9 +1,0 @@
-
-package math_core;
-
-struct nd_aabox_t
-{
-	int32_t n;
-	nd_point_t start;
-	nd_point_t end;
-}

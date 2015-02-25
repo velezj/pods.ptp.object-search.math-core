@@ -1,9 +1,0 @@
-
-package math_core;
-
-struct nd_vector_t {
-
-       int32_t n;
-       double component[ n ];
-
-}

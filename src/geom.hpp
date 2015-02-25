@@ -4,8 +4,9 @@
 
 
 
-#include "lcmtypes/p2l_math_core.hpp"
-#include <vector>
+#include "types.hpp"
+#include <cstdint>
+
 
 // Add nd_point_t to stat counter
 // #if defined( __P2L_COMMON_stat_counter_possible_types__ )
@@ -92,12 +93,12 @@ namespace math_core {
 
   // Description:
   // Create simple known vector and points
-  nd_point_t zero_point( int64_t n );
-  nd_vector_t zero_vector( int64_t n );
-  nd_direction_t axis_direction( int64_t n, int64_t dim );
-  nd_direction_t x_axis_direction( int64_t n );
-  nd_direction_t y_axis_direction( int64_t n );
-  nd_direction_t z_axis_direction( int64_t n );
+  nd_point_t zero_point( std::int64_t n );
+  nd_vector_t zero_vector( std::int64_t n );
+  nd_direction_t axis_direction( std::int64_t n, std::int64_t dim );
+  nd_direction_t x_axis_direction( std::int64_t n );
+  nd_direction_t y_axis_direction( std::int64_t n );
+  nd_direction_t z_axis_direction( std::int64_t n );
 
   // Description:
   // Simple creation functions
@@ -113,8 +114,8 @@ namespace math_core {
 
   // Description:
   // Create points from arrays (copies the data!)
-  nd_point_t point( int64_t n, const double* data );
-  nd_point_t point( int64_t n, const std::vector<double>& data );
+  nd_point_t point( std::int64_t n, const double* data );
+  nd_point_t point( std::int64_t n, const std::vector<double>& data );
   nd_point_t point( const std::vector<double>& data );
 
   // Description:

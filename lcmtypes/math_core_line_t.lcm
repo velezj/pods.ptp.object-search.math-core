@@ -1,8 +1,0 @@
-
-package math_core;
-
-struct line_t 
-{
-	nd_point_t origin;
-        nd_direction_t direction;
-}

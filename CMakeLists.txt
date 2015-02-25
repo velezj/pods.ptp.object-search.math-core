@@ -4,10 +4,10 @@ cmake_minimum_required(VERSION 2.6.0)
 set(POD_NAME p2l-math-core)
 include(cmake/pods.cmake)
 
-# automatically build LCM types.  This also defines a number of CMake
-# variables, see cmake/lcmtypes.cmake for details
-include(cmake/lcmtypes.cmake)
-lcmtypes_build()
+# # automatically build LCM types.  This also defines a number of CMake
+# # variables, see cmake/lcmtypes.cmake for details
+# include(cmake/lcmtypes.cmake)
+# lcmtypes_build()
 
 
 #set(CMAKE_CXX_FLAGS "-std=c++0x -pedantic -Wall -O2 -g")
@@ -36,7 +36,8 @@ add_library( p2l-math-core SHARED
   src/polynomial_fit.cpp
   src/roots.cpp
   )
-pods_install_headers( 
+pods_install_headers(
+  src/types.hpp
   src/geom.hpp
   src/io.hpp
   src/matrix.hpp
@@ -54,13 +55,19 @@ pods_install_headers(
   math-core )
 
 
-pods_use_pkg_config_packages(p2l-math-core lcmtypes_p2l-math-core gmp-5.1.3 gsl-1.16 eigen3 boost-1.54.0 p2l-common nlopt-2.4.1  )
+pods_use_pkg_config_packages(p2l-math-core
+  gmp-5.1.3
+  gsl-1.16
+  eigen3
+  boost-1.54.0
+  p2l-common
+  nlopt-2.4.1  )
 pods_install_libraries( p2l-math-core )
 pods_install_pkg_config_file(p2l-math-core
     CFLAGS
     LIBS -lp2l-math-core
     REQUIRES gsl-1.16 eigen3 boost-1.54.0 p2l-common gmp-5.1.3 nlopt-2.4.1
-    VERSION 0.0.1)
+    VERSION 1.0.0)
 
 
 # add the test subdirectory

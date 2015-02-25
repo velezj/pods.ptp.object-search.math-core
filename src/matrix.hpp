@@ -3,7 +3,7 @@
 #define __MATRIX_HPP__
 
 
-#include <lcmtypes/p2l_math_core.hpp>
+#include "types.hpp"
 #include <eigen3/Eigen/Eigen>
 
 namespace math_core {

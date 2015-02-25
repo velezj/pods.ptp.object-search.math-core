@@ -2,7 +2,7 @@
 #if !defined( __IO_HPP__ )
 #define __IO_HPP__
 
-#include "lcmtypes/p2l_math_core.hpp"
+#include "types.hpp"
 #include <iosfwd>
 #include <string>
 
