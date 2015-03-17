@@ -1,53 +1,53 @@
 
 
 # a simple test for projections into subspaces
-add_executable( p2l-math-core-test-projection
+add_executable( object-search.math-core-test-projection
   test-projection.cpp)
-pods_use_pkg_config_packages( p2l-math-core-test-projection p2l-math-core  )
-pods_install_executables( p2l-math-core-test-projection )
+pods_use_pkg_config_packages( object-search.math-core-test-projection object-search.math-core  )
+pods_install_executables( object-search.math-core-test-projection )
 
 
 
 # a simple test for extrema finding
-add_executable( p2l-math-core-test-extrema
+add_executable( object-search.math-core-test-extrema
   test-extrema.cpp)
-pods_use_pkg_config_packages( p2l-math-core-test-extrema p2l-math-core  )
-pods_install_executables( p2l-math-core-test-extrema )
+pods_use_pkg_config_packages( object-search.math-core-test-extrema object-search.math-core  )
+pods_install_executables( object-search.math-core-test-extrema )
 
 
 # test math_function
-add_executable( p2l-math-core-test-math-function
+add_executable( object-search.math-core-test-math-function
   test-math-function.cpp)
-pods_use_pkg_config_packages( p2l-math-core-test-math-function p2l-math-core  )
-pods_install_executables( p2l-math-core-test-math-function )
+pods_use_pkg_config_packages( object-search.math-core-test-math-function object-search.math-core  )
+pods_install_executables( object-search.math-core-test-math-function )
 
 
 # test polynomial
-add_executable( p2l-math-core-test-polynomial
+add_executable( object-search.math-core-test-polynomial
   test-polynomial.cpp)
-pods_use_pkg_config_packages( p2l-math-core-test-polynomial p2l-math-core  )
-pods_install_executables( p2l-math-core-test-polynomial )
+pods_use_pkg_config_packages( object-search.math-core-test-polynomial object-search.math-core  )
+pods_install_executables( object-search.math-core-test-polynomial )
 
 
 
 # test polynomial fit
-add_executable( p2l-math-core-test-polynomial-fit
+add_executable( object-search.math-core-test-polynomial-fit
   test-polynomial-fit.cpp)
-pods_use_pkg_config_packages( p2l-math-core-test-polynomial-fit p2l-math-core  )
-pods_install_executables( p2l-math-core-test-polynomial-fit )
+pods_use_pkg_config_packages( object-search.math-core-test-polynomial-fit object-search.math-core  )
+pods_install_executables( object-search.math-core-test-polynomial-fit )
 
 
 # test roots
-add_executable( p2l-math-core-test-roots
+add_executable( object-search.math-core-test-roots
   test-roots.cpp)
-pods_use_pkg_config_packages( p2l-math-core-test-roots p2l-math-core  )
-pods_install_executables( p2l-math-core-test-roots )
+pods_use_pkg_config_packages( object-search.math-core-test-roots object-search.math-core  )
+pods_install_executables( object-search.math-core-test-roots )
 
 # test policy number
-add_executable( p2l-math-core-test-policy-number
+add_executable( object-search.math-core-test-policy-number
   test-policy-number.cpp)
-pods_use_pkg_config_packages( p2l-math-core-test-policy-number p2l-math-core  )
-pods_install_executables( p2l-math-core-test-policy-number )
+pods_use_pkg_config_packages( object-search.math-core-test-policy-number object-search.math-core  )
+pods_install_executables( object-search.math-core-test-policy-number )
 
 
 

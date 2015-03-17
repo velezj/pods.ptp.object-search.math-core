@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.6.0)
 
 # pull in the pods macros. See cmake/pods.cmake for documentation
-set(POD_NAME p2l-math-core)
+set(POD_NAME object-search.math-core)
 include(cmake/pods.cmake)
 
 # # automatically build LCM types.  This also defines a number of CMake
@@ -25,7 +25,7 @@ endif (USE_PEDANTIC)
 
 
 # math-core library
-add_library( p2l-math-core SHARED
+add_library( object-search.math-core SHARED
   src/io.cpp
   src/geom.cpp
   src/matrix.cpp
@@ -55,18 +55,18 @@ pods_install_headers(
   math-core )
 
 
-pods_use_pkg_config_packages(p2l-math-core
+pods_use_pkg_config_packages(object-search.math-core
   gmp-5.1.3
   gsl-1.16
   eigen3
   boost-1.54.0
-  p2l-common
+  object-search.common
   nlopt-2.4.1  )
-pods_install_libraries( p2l-math-core )
-pods_install_pkg_config_file(p2l-math-core
+pods_install_libraries( object-search.math-core )
+pods_install_pkg_config_file(object-search.math-core
     CFLAGS
-    LIBS -lp2l-math-core
-    REQUIRES gsl-1.16 eigen3 boost-1.54.0 p2l-common gmp-5.1.3 nlopt-2.4.1
+    LIBS -lobject-search.math-core
+    REQUIRES gsl-1.16 eigen3 boost-1.54.0 object-search.common gmp-5.1.3 nlopt-2.4.1
     VERSION 1.0.0)
 
 
