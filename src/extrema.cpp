@@ -246,7 +246,7 @@ namespace math_core {
 	  res = tune.optimize( opt_x, extrema_value );
 	} catch ( nlopt::roundoff_limited& e ) {
 	  // ignore roundoff limited
-	  std::cout << "  ..roundoff-limited optimization, continuing" << std::endl;
+	  std::cout << "  ..roundoff-limited local optimization, continuing" << std::endl; 
 	}
       }
 
@@ -280,7 +280,10 @@ namespace math_core {
 
       // return the found optimize
       return opt_x;
-    } 
+    }
+    catch( nlopt::roundoff_limited& re ) {
+      std::cout << "  ..roundoff-limited global optimization, continuing" << std::endl; 
+    }
     catch( std::exception& e ) {
       nlopt_result res;
       int line;
